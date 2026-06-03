@@ -1,0 +1,57 @@
+:root {
+  /* Background */
+  --bg-page: #f5f6fa;
+  --bg-surface: #ffffff;
+  --bg-hero: linear-gradient(160deg, #e8f0ff 0%, #f0f4ff 45%, #f5f6fa 100%);
+
+  /* Text */
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+
+  /* Border */
+  --border-color: #e5e7eb;
+
+  /* Platform colors */
+  --color-weibo: #e6162d;
+  --color-zhihu: #0066ff;
+  --color-bilibili: #fb7299;
+
+  /* Accent colors for stat cards */
+  --color-blue: #3b82f6;
+  --color-orange: #f97316;
+  --color-green: #22c55e;
+  --color-purple: #8b5cf6;
+
+  /* Rank badge colors */
+  --rank-1: #ef4444;
+  --rank-2: #f97316;
+  --rank-3: #eab308;
+  --rank-default: #9ca3af;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.10), 0 4px 8px rgba(0, 0, 0, 0.06);
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Container */
+  --container-width: 1200px;
+  --container-padding: 24px;
+
+  /* Transition */
+  --transition: 0.2s ease;
+}
