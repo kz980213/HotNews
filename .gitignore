@@ -1,5 +1,8 @@
 node_modules/
 .claude/settings.local.json
+
+# DailyHotApi 本地配置（由 npm run setup 从 .env.example 自动生成）
+server/.env
 dist/
 dist-ssr/
 *.local

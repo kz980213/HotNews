@@ -7,13 +7,21 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "type-check": "vue-tsc --noEmit"
+    "type-check": "vue-tsc --noEmit",
+
+    "api": "npm --prefix server run dev",
+    "api:install": "npm --prefix server install",
+
+    "setup": "npm install && npm run api:install && node scripts/setup.cjs",
+
+    "dev:all": "concurrently -n \"API,前端\" -c \"cyan.bold,green.bold\" --kill-others-on-fail \"npm run api\" \"npm run dev\""
   },
   "dependencies": {
     "vue": "^3.4.21"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
+    "concurrently": "^10.0.3",
     "typescript": "^5.4.2",
     "vite": "^5.2.0",
     "vue-tsc": "^2.0.6"
