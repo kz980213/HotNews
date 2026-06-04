@@ -55,7 +55,7 @@ defineProps<{
   align-items: center;
   gap: 14px;
   box-shadow: var(--shadow-sm);
-  flex: 1;
+  /* flex: 1 移除：由父级 grid 控制尺寸，自身不需要 flex grow */
   min-width: 0;
   transition: box-shadow var(--transition), border-color var(--transition);
   border: 1.5px solid transparent;

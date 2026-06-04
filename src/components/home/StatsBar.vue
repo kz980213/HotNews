@@ -63,23 +63,25 @@ defineEmits<{ 'open-selector': [] }>()
 </script>
 
 <style scoped>
+/* grid 在容器层控制列数，不依赖子组件样式覆盖，规避 :deep 优先级问题 */
 .stats-bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  flex-wrap: wrap;
 }
 
-.stats-bar > :deep(.stat-card) {
-  flex: 1;
-  min-width: 160px;
+/* 平板：2 列 */
+@media (max-width: 900px) {
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 }
 
-@media (max-width: 600px) {
-  .stats-bar { gap: 10px; }
-
-  .stats-bar > :deep(.stat-card) {
-    min-width: calc(50% - 5px);
-    flex: none;
+/* 手机：2 列（与平板相同，但间距缩小） */
+@media (max-width: 480px) {
+  .stats-bar {
+    gap: 10px;
   }
 }
 </style>
