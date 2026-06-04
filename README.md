@@ -80,6 +80,78 @@ npm run dev:all
 
 ---
 
+## Vercel 线上部署
+
+> 本地开发时 Vite proxy 会把 `/api/*` 转发给 DailyHotApi。  
+> 部署到 Vercel 后 proxy 不生效，需要把 DailyHotApi 也部署到公网，再通过 `vercel.json` 做边缘代理。
+
+### 第一步：部署 DailyHotApi 到 Render
+
+1. 登录 [Render.com](https://render.com)（免费，支持 GitHub 一键部署）
+2. New → **Web Service** → 选择 `kz980213/HotNews` 仓库
+3. 配置如下：
+
+   | 字段 | 值 |
+   |------|-----|
+   | Root Directory | `server` |
+   | Runtime | `Node` |
+   | Build Command | `npm install && npm run build` |
+   | Start Command | `npm start` |
+
+4. 展开 **Environment** → Add Environment Variable：
+
+   | Key | Value |
+   |-----|-------|
+   | `PORT` | `6688` |
+   | `ALLOWED_DOMAIN` | `*` |
+
+5. 点击 **Deploy**，等待部署完成，记录生成的 URL，格式类似：
+   ```
+   https://hotnews-api-xxxx.onrender.com
+   ```
+
+### 第二步：配置 vercel.json
+
+编辑项目根目录的 `vercel.json`，将 `YOUR_API_URL` 替换为上一步得到的 Render URL：
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://hotnews-api-xxxx.onrender.com/:path*"
+    }
+  ]
+}
+```
+
+### 第三步：推送触发重新部署
+
+```bash
+git add vercel.json
+git commit -m "配置生产环境 API 代理地址"
+git push
+```
+
+Vercel 检测到推送后会自动重新构建，完成后刷新线上地址即可看到真实数据。
+
+---
+
+**原理说明**
+
+```
+浏览器                  Vercel 边缘              Render
+  │                        │                      │
+  │── GET /api/weibo ──▶   │                      │
+  │                        │── GET /weibo ───────▶│
+  │                        │◀─── 热搜数据 ─────────│
+  │◀──── 热搜数据 ──────────│                      │
+```
+
+Vercel 的 `rewrites` 在服务端完成转发，浏览器始终只与 Vercel 通信，无跨域问题。
+
+---
+
 ## 注意事项
 
 ### 克隆时忘记加 `--recurse-submodules`
