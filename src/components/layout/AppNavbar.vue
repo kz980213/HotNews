@@ -37,7 +37,7 @@
         </button>
 
         <a
-          href="https://github.com"
+          href="https://github.com/kz980213/HotNews"
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn--dark"
